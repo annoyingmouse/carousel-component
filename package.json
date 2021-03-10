@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "build-wc": "npm run build-wc:clean && npm run build-wc:webpack",
-    "build-wc:clean": "rmdir /Q /S dist && mkdir dist",
+    "build-wc:clean": "if exist dist rmdir /Q /S dist && mkdir dist",
     "build-wc:webpack": "webpack"
   },
   "dependencies": {},
