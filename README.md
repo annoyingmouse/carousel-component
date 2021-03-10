@@ -1,1 +1,1 @@
-"# carousel-component" 
+# carousel-component
