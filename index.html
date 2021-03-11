@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <brewery-app></brewery-app>
+
+    <script type="module">
+      import { LitElement, html } from 'https://unpkg.com/lit-element?module';
+
+      class BreweryApp extends LitElement {
+        static get properties() {
+          return {
+            breweries: { type: Array },
+          };
+        }
+
+        connectedCallback() {
+          super.connectedCallback();
+
+          if (!this.breweries) {
+            this.fetchBreweries();
+          }
+        }
+
+        async fetchBreweries() {
+          const response = await fetch(
+            'https://api.openbrewerydb.org/breweries'
+          );
+          const jsonResponse = await response.json();
+          this.breweries = jsonResponse;
+        }
+
+        render() {
+          return html` <pre>${JSON.stringify(this.breweries, null, 2)}</pre> `;
+        }
+      }
+
+      customElements.define('brewery-app', BreweryApp);
+    </script>
+  </body>
+</html>
